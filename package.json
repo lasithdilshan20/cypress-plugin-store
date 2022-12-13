@@ -2,16 +2,25 @@
   "name": "cypressstore",
   "version": "1.0.0",
   "description": "Store values and use in any spec files",
-  "main": "index.js",
+  "main": "src",
+  "types": "src",
+  "files": [
+    "src",
+    "commands.js"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "semantic-release": "semantic-release",
+    "badges": "npx -p dependency-version-badge update-badge cypress"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lasithdilshan20/cypress-plugin-store.git"
   },
   "author": "Lasithdilshan20",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/lasithdilshan20/cypress-plugin-store/issues"
   },
