@@ -1,40 +1,39 @@
 // enables intelligent code completion for Cypress commands
 // https://on.cypress.io/intelligent-code-completion
 /// <reference types="cypress" />
-let var_value;
-Cypress.Commands.add('getByLabel', (label) => {
-  cy.log('**getByLabel**')
-  cy.contains('label', label)
-      .invoke('attr', 'for')
-      .then((id) => {
-        cy.get('#' + id)
-      })
-})
-
-Cypress.Commands.add('storeValue', (element) => {
+Cypress.Commands.add('storeValue', (element,variableName) => {
   cy.log('**storeValue**')
   //Store value in a variable and use it later
     cy.get(element).then(($el) => {
-        var_value = $el.val();
-        return var_value;
+        // Store the value in a json file under variableName json key
+        cy.writeFile('cypress/fixtures/variables.json', { [variableName]: $el.val() })
     })
 })
 
+
+Cypress.Commands.add('retrieveValue', (variableName) => {
+    cy.log('**retrieveValue**')
+    // Javascript/typescript function to get the value of a variable from a json file
+    cy.readFile('cypress/fixtures/variables.json').its(variableName).then((value) => {
+        // Use the value here
+        cy.log(value)
+    })
+    cy.readFile('cypress/fixtures/variables.json').then((json) => {
+            //return the value of the variableName key as string
+            return json[variableName]
+        })
+})
+
 describe('cypress-plugin-store', () => {
-  it('find the elements', () => {
+  it('store the elements', () => {
     // path with respect to the root folder
     cy.visit('cypress/index.html')
-    cy.getByLabel('First name:').should('have.value', '').type('Joe')
-    cy.getByLabel('First name:').should('have.value', 'Joe')
-    cy.getByLabel('Last name:').type('Smith')
-    // check the form inputs
-    cy.get('form')
-        .invoke('serializeArray')
-        .should('deep.equal', [
-          { name: 'fname', value: 'Joe' },
-          { name: 'lname', value: 'Smith' },
-        ])
-    let x = cy.storeValue('#fname')
-    cy.log(x)
+    cy.get('#fname').type('John Doe')
+    cy.storeValue('#fname','firstName')
   })
+
+    it('retrieve the elements', () => {
+        const x = cy.retrieveValue('firstName');
+        cy.log('Out spec '+x);
+    })
 })
