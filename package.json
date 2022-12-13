@@ -1,0 +1,22 @@
+{
+  "name": "cypressstore",
+  "version": "1.0.0",
+  "description": "Store values and use in any spec files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lasithdilshan20/cypress-plugin-store.git"
+  },
+  "author": "Lasithdilshan20",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lasithdilshan20/cypress-plugin-store/issues"
+  },
+  "homepage": "https://github.com/lasithdilshan20/cypress-plugin-store#readme",
+  "dependencies": {
+    "cypress": "^12.0.2"
+  }
+}
