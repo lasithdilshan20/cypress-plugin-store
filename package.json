@@ -1,7 +1,7 @@
 {
   "name": "cypressstore",
   "version": "1.0.0",
-  "description": "Store values and use in any spec files",
+  "description": "Store values and retrieve in any spec files",
   "main": "src",
   "types": "src",
   "files": [
