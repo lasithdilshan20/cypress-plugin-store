@@ -1,6 +1,6 @@
 {
   "name": "cypressstore",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "Store values and retrieve in any spec files",
   "main": "src",
   "types": "src",
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lasithdilshan20/cypress-plugin-store.git"
+    "url": "https://github.com/lasithdilshan20/cypress-plugin-store.git"
   },
   "author": "Lasithdilshan20",
   "license": "MIT",
@@ -28,6 +28,9 @@
   "dependencies": {
     "cypress": "^12.0.2",
     "prettier": "^2.8.1",
+    "semantic-release": "^19.0.5"
+  },
+  "devDependencies": {
     "semantic-release": "^19.0.5"
   }
 }
