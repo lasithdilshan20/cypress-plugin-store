@@ -1,6 +1,6 @@
 {
   "name": "cypressstore",
-  "version": "0.0.0-development",
+  "version": "0.1.0-development",
   "description": "Store values and retrieve in any spec files",
   "main": "src",
   "types": "src",
