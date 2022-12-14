@@ -1,6 +1,6 @@
 # cypress-plugin-store [![ci status][ci image]][ci url] [![renovate-app badge][renovate-badge]][renovate-app] ![cypress version](https://img.shields.io/badge/cypress-12.0.2-brightgreen)
 
-> Store values and retrieve in any spec files
+> Store values during the executions and retrieve in any test case in the same spec file.
 
 ## install
 
@@ -20,30 +20,63 @@ Include from your Cypress support file or individual spec
 import 'cypress-plugin-store/commands'
 ```
 
+Then use the custom command `cy.storePluginSetup()` to initialize the plugin.
+
+**Note: Recommended inside the `before` hook.**
+
+```js
+before(() => {
+    cy.storePluginSetup();
+})
+```
+
 Then use the custom command `cy.storeValue`
+
+**Note: Only support with CSS  Selectors**
 
 ```js
 cy.storeValue(element_CSS_Selector,variable_Name)
 ```
 Example:
 ```js
-it('store the elements', () => {
+it('Store the Variables', () => {
     cy.visit('cypress/index.html')
-    cy.get('#fname').type('John Doe')
+    cy.get('#fname').type('John')
+    cy.get('#lname').type('Doe')
     cy.storeValue('#fname','firstName')
+    cy.storeValue('#lname','lastName')
 })
 ```
 
 Then use the custom command `cy.retrieveValue`
 
 ```js
-cy.retrieveValue(variable_Name)
+cy.retrieveValue(variable_Name).then((var_) => {
+    // Do something with the var_
+})
 ```
 Example:
 ```js
-it('retrieve the elements', () => {
-    const x = cy.retrieveValue('firstName');
-    cy.log('Out spec '+x);
+ it('retrieve First name the elements', () => {
+    cy.retrieveValue('firstName').then((firstName) => {
+        cy.log('This is First Name'+firstName);
+    })
+})
+
+it('retrieve Last name the elements', () => {
+    cy.retrieveValue('lastName').then((lastName) => {
+        cy.log('This is '+lastName);
+    })
+})
+```
+
+Finally, use the custom command `cy.clearPluginSetup()` to clear the plugin. **(IF needed)**
+
+**Note: Recommended inside the `after` hook.**
+
+```js
+after(() => {
+    cy.clearPluginSetup();
 })
 ```
 

@@ -4,7 +4,7 @@ const retrieveValueCommand = (name) => (variableName) => {
         cy.log(value)
     })
     cy.readFile('cypress/fixtures/variables.json').then((json) => {
-        return json[variableName]
+        return cy.wrap(json[variableName]);
     })
 }
 

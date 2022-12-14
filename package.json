@@ -1,6 +1,6 @@
 {
   "name": "cypress-plugin-store",
-  "version": "0.0.0-development",
+  "version": "1.0.0-development",
   "description": "Store values and retrieve in any spec files",
   "main": "src",
   "types": "src",
@@ -36,10 +36,10 @@
   },
   "homepage": "https://github.com/lasithdilshan20/cypress-plugin-store#readme",
   "dependencies": {
-    "cypress": "^12.0.2",
     "prettier": "^2.8.1"
   },
   "devDependencies": {
+    "cypress": "^12.1.0",
     "semantic-release": "^19.0.5"
   }
 }
