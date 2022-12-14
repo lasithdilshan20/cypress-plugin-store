@@ -1,4 +1,4 @@
-# cypress-plugin-store [![ci status][ci image]][ci url] [![renovate-app badge][renovate-badge]][renovate-app] ![cypress version](https://img.shields.io/badge/cypress-12.0.2-brightgreen)
+# cypress-plugin-store [![ci status][ci image]][ci url] [![renovate-app badge][renovate-badge]][renovate-app] ![cypress version](https://img.shields.io/badge/cypress-12.1.0-brightgreen)
 
 > Store values during the executions and retrieve in any test case in the same spec file.
 
