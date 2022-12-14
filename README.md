@@ -14,7 +14,7 @@ yarn add -D cypress-plugin-store
 
 ### Simple
 
-Include from your Cypress support file or individual spec
+Include from your Cypress support file or individual spec (cypress > support > e2e.js)
 
 ```js
 import 'cypress-plugin-store/commands'
