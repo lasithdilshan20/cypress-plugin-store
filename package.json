@@ -1,6 +1,6 @@
 {
-  "name": "cypressstore",
-  "version": "0.1.0-development",
+  "name": "cypress-plugin-store",
+  "version": "0.0.0-development",
   "description": "Store values and retrieve in any spec files",
   "main": "src",
   "types": "src",
@@ -8,6 +8,16 @@
     "src",
     "commands.js"
   ],
+  "release": {
+    "branches": [
+      "1.0",
+      {
+        "name": "master",
+        "channel": "rc",
+        "prerelease": "rc"
+      }
+    ]
+  },
   "scripts": {
     "test": "cypress run",
     "cy:open": "cypress open",
