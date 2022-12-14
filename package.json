@@ -29,6 +29,14 @@
     "type": "git",
     "url": "https://github.com/lasithdilshan20/cypress-plugin-store.git"
   },
+  "keywords": [
+    "cypress",
+    "store",
+    "variables",
+    "cypress.io",
+    "cypress-plugin",
+    "cypress-store-variables"
+  ],
   "author": "Lasithdilshan20",
   "license": "MIT",
   "bugs": {
