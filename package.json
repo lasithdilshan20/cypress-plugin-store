@@ -1,6 +1,6 @@
 {
   "name": "cypress-plugin-store",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Store values during the executions and retrieve them in any test case in the same spec file.",
   "main": "src",
   "types": "src",
