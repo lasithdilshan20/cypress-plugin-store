@@ -12,8 +12,8 @@ Cypress.Commands.add('storeValue', (element,variableName) => {
   cy.log('**storeValue**')
     const filename = 'cypress/fixtures/variables.json';
     cy.readFile(filename).then((json) => {
-        cy.get(element).then(($el) => {
-            json[variableName] = $el.val();
+        cy.get(element).invoke("text").then(($el) => {
+            json[variableName] = $el;
             cy.writeFile(filename, json);
         })
     })
@@ -51,7 +51,7 @@ describe('cypress-plugin-store', () => {
     cy.visit('cypress/index.html')
     cy.get('#fname').type('John')
       cy.get('#lname').type('Doe')
-    cy.storeValue('#fname','firstName')
+    cy.storeValue('#lbl_fname','firstName')
       cy.storeValue('#lname','lastName')
   })
 
