@@ -11,7 +11,7 @@ describe('cypress-plugin-store', () => {
         cy.visit('cypress/index.html')
         cy.get('#fname').type('John')
         cy.get('#lname').type('Doe')
-        cy.storeValue('#fname','firstName')
+        cy.storeValue('#lbl_fname','firstName')
         cy.storeValue('#lname','lastName')
     })
 

@@ -1,10 +1,10 @@
 const storeValueCommand = (name) => (element,variableName) => {
     cy.log(`**${name}**`)
-    const filename = 'cypress/fixtures/variables.json';
-    cy.readFile(filename).then((json) => {
+    const filename = 'src/variables.json';
+    cy.readFile(filename,{log: false}).then((json) => {
         cy.get(element).invoke("text").then(($el) => {
             json[variableName] = $el;
-            cy.writeFile(filename, json);
+            cy.writeFile(filename, json,{log: false});
         })
     })
 }

@@ -4,17 +4,17 @@
 
 Cypress.Commands.add('storePluginSetup', () => {
     cy.log('**storeSetup**')
-    const filename = 'cypress/fixtures/variables.json';
+    const filename = 'src/variables.json';
     //Write the file with all access
-    cy.writeFile(filename, {}, {flag: 'w+'});
+    cy.writeFile(filename, {}, {flag: 'w+', log: false});
 })
 Cypress.Commands.add('storeValue', (element,variableName) => {
   cy.log('**storeValue**')
-    const filename = 'cypress/fixtures/variables.json';
-    cy.readFile(filename).then((json) => {
+    const filename = 'src/variables.json';
+    cy.readFile(filename,{log: false}).then((json) => {
         cy.get(element).invoke("text").then(($el) => {
             json[variableName] = $el;
-            cy.writeFile(filename, json);
+            cy.writeFile(filename, json,{log: false});
         })
     })
 })
@@ -22,11 +22,11 @@ Cypress.Commands.add('storeValue', (element,variableName) => {
 Cypress.Commands.add('retrieveValue', (variableName) => {
     cy.log('**retrieveValue**')
     // Javascript/typescript function to get the value of a variable from a json file
-    cy.readFile('cypress/fixtures/variables.json').its(variableName).then((value) => {
+    cy.readFile('src/variables.json',{log: false}).its(variableName).then((value) => {
         // Use the value here
         cy.log(value)
     })
-    cy.readFile('cypress/fixtures/variables.json').then((json) => {
+    cy.readFile('src/variables.json',{log: false}).then((json) => {
         //return the value of the variableName key as string
         return cy.wrap(json[variableName]);
     })
@@ -34,9 +34,9 @@ Cypress.Commands.add('retrieveValue', (variableName) => {
 
 Cypress.Commands.add('clearPluginSetup', () => {
     cy.log('**clearSetup**')
-    const filename = 'cypress/fixtures/variables.json';
+    const filename = 'src/variables.json';
     //Delete content of the file
-    cy.writeFile(filename, {});
+    cy.writeFile(filename, {},{log: false});
 })
 
 describe('cypress-plugin-store', () => {

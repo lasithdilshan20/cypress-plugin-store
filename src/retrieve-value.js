@@ -1,9 +1,9 @@
 const retrieveValueCommand = (name) => (variableName) => {
     cy.log(`**${name}**`)
-    cy.readFile('cypress/fixtures/variables.json').its(variableName).then((value) => {
-        cy.log(value)
+    cy.readFile('src/variables.json').its(variableName).then((value) => {
+        cy.log(value,{log: false})
     })
-    cy.readFile('cypress/fixtures/variables.json').then((json) => {
+    cy.readFile('src/variables.json').then((json) => {
         return cy.wrap(json[variableName]);
     })
 }

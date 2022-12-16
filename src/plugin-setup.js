@@ -1,7 +1,7 @@
 const storePluginSetupCommand = (name) => () => {
     cy.log(`**${name}**`)
-    const filename = 'cypress/fixtures/variables.json';
-    cy.writeFile(filename, {}, {flag: 'w+'});
+    const filename = 'src/variables.json';
+    cy.writeFile(filename, {}, {flag: 'w+',log: false});
 }
 
 module.exports = { storePluginSetupCommand }
