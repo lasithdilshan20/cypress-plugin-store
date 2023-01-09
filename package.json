@@ -20,6 +20,7 @@
   },
   "scripts": {
     "test": "cypress run",
+    "start:ci": "npx cypress run --record --key 026ce059-c468-4451-9a3f-eaf42ce89a32",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "semantic-release": "semantic-release",
