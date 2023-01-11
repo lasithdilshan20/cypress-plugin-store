@@ -12,13 +12,18 @@ Cypress.Commands.add('storeValue', (element,variableName) => {
   cy.log('**storeValue**')
     const filename = 'src/variables.json';
     cy.readFile(filename,{log: false}).then((json) => {
-        cy.get(element).invoke("text").then(($el) => {
+        cy.get(element).invoke('text').then(($el) => {
             json[variableName] = $el;
+            if ($el === '') {
+                delete json[variableName];
+                cy.get(element).invoke('val').then(($el) => {
+                    json[variableName] = $el;
+                })
+            }
             cy.writeFile(filename, json,{log: false});
         })
     })
 })
-
 Cypress.Commands.add('retrieveValue', (variableName) => {
     cy.log('**retrieveValue**')
     // Javascript/typescript function to get the value of a variable from a json file
@@ -53,6 +58,9 @@ describe('cypress-plugin-store', () => {
       cy.get('#lname').type('Doe')
     cy.storeValue('#lbl_fname','firstName')
       cy.storeValue('#lname','lastName')
+
+      cy.storeValue('#city','city')
+        cy.storeValue('#owner','owner')
   })
 
     it('retrieve the elements', () => {
@@ -61,6 +69,12 @@ describe('cypress-plugin-store', () => {
         })
         cy.retrieveValue('lastName').then((x) => {
             cy.log('lastName Out spec '+x);
+        })
+        cy.retrieveValue('city').then((x) => {
+            cy.log('city Out spec '+x);
+        })
+        cy.retrieveValue('owner').then((x) => {
+            cy.log('owner Out spec '+x);
         })
     })
 })

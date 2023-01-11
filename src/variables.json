@@ -1,4 +1,6 @@
 {
   "firstName": "First name:",
-  "lastName": ""
+  "lastName": "Doe",
+  "city": "Texas",
+  "owner": ""
 }

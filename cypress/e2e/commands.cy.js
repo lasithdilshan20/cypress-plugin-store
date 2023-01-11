@@ -13,6 +13,8 @@ describe('cypress-plugin-store', () => {
         cy.get('#lname').type('Doe')
         cy.storeValue('#lbl_fname','firstName')
         cy.storeValue('#lname','lastName')
+        cy.storeValue('#city','city')
+        cy.storeValue('#owner','owner')
     })
 
     it('retrieve First name the elements', () => {
@@ -24,6 +26,18 @@ describe('cypress-plugin-store', () => {
     it('retrieve Last name the elements', () => {
         cy.retrieveValue('lastName').then((lastName) => {
             cy.log('Last Name -- '+lastName);
+        })
+    })
+
+    it('retrieve City the elements', () => {
+        cy.retrieveValue('city').then((city) => {
+            cy.log('City -- '+city);
+        })
+    })
+
+    it('retrieve Owner the elements', () => {
+        cy.retrieveValue('owner').then((owner) => {
+            cy.log('Owner -- '+owner);
         })
     })
 
