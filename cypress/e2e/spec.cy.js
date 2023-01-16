@@ -11,19 +11,37 @@ Cypress.Commands.add('storePluginSetup', () => {
 Cypress.Commands.add('storeValue', (element,variableName) => {
   cy.log('**storeValue**')
     const filename = 'src/variables.json';
-    cy.readFile(filename,{log: false}).then((json) => {
-        cy.get(element).invoke('text').then(($el) => {
-            json[variableName] = $el;
-            if ($el === '') {
-                delete json[variableName];
-                cy.get(element).invoke('val').then(($el) => {
-                    json[variableName] = $el;
-                })
-            }
-            cy.writeFile(filename, json,{log: false});
-        })
-    })
+  if (element.includes('/')) {
+      //Xpath
+      cy.readFile(filename, {log: false}).then((json) => {
+          cy.xpath(element).invoke('text').then(($el) => {
+              json[variableName] = $el;
+              if ($el === '') {
+                  delete json[variableName];
+                  cy.xpath(element).invoke('val').then(($el) => {
+                      json[variableName] = $el;
+                  })
+              }
+              cy.writeFile(filename, json, {log: false});
+          })
+      })
+  } else {
+      //CSS Selector
+      cy.readFile(filename, {log: false}).then((json) => {
+          cy.get(element).invoke('text').then(($el) => {
+              json[variableName] = $el;
+              if ($el === '') {
+                  delete json[variableName];
+                  cy.get(element).invoke('val').then(($el) => {
+                      json[variableName] = $el;
+                  })
+              }
+              cy.writeFile(filename, json, {log: false});
+          })
+      })
+  }
 })
+
 Cypress.Commands.add('retrieveValue', (variableName) => {
     cy.log('**retrieveValue**')
     // Javascript/typescript function to get the value of a variable from a json file
@@ -51,16 +69,23 @@ describe('cypress-plugin-store', () => {
     after(() => {
         //cy.clearPluginSetup();
     })
+
   it('store the elements', () => {
     // path with respect to the root folder
-    cy.visit('cypress/index.html')
-    cy.get('#fname').type('John')
+      cy.visit('cypress/index.html')
+      cy.get('#fname').type('John')
       cy.get('#lname').type('Doe')
-    cy.storeValue('#lbl_fname','firstName')
+      cy.storeValue('#lbl_fname','firstName')
       cy.storeValue('#lname','lastName')
 
       cy.storeValue('#city','city')
-        cy.storeValue('#owner','owner')
+      cy.storeValue('#owner','owner')
+
+      cy.storeValue(`//input[@name="lname"]`,'firstNameXpath')
+
+      cy.storeValue(`//input[@id='city']`,'cityXpath')
+        cy.storeValue(`//input[@id='owner']`,'ownerXpath')
+
   })
 
     it('retrieve the elements', () => {
@@ -75,6 +100,15 @@ describe('cypress-plugin-store', () => {
         })
         cy.retrieveValue('owner').then((x) => {
             cy.log('owner Out spec '+x);
+        })
+        cy.retrieveValue('firstNameXpath').then((x) => {
+            cy.log('firstNameXpath Out spec '+x);
+        })
+        cy.retrieveValue('cityXpath').then((x) => {
+            cy.log('cityXpath Out spec '+x);
+        })
+        cy.retrieveValue('ownerXpath').then((x) => {
+            cy.log('ownerXpath Out spec '+x);
         })
     })
 })

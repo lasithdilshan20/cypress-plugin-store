@@ -2,5 +2,8 @@
   "firstName": "First name:",
   "lastName": "Doe",
   "city": "Texas",
-  "owner": ""
+  "owner": "",
+  "firstNameXpath": "Doe",
+  "cityXpath": "Texas",
+  "ownerXpath": ""
 }
