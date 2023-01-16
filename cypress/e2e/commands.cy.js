@@ -15,11 +15,14 @@ describe('cypress-plugin-store', () => {
         cy.storeValue('#lname','lastName')
         cy.storeValue('#city','city')
         cy.storeValue('#owner','owner')
+        cy.storeValue(`//input[@name="lname"]`,'firstNameXpath')
+        cy.storeValue(`//input[@id='city']`,'cityXpath')
+        cy.storeValue(`//input[@id='owner']`,'ownerXpath')
     })
 
     it('retrieve First name the elements', () => {
         cy.retrieveValue('firstName').then((firstName) => {
-            cy.log('Out spec '+firstName);
+            cy.log('Out spec --'+firstName);
         })
     })
 
@@ -40,6 +43,17 @@ describe('cypress-plugin-store', () => {
             cy.log('Owner -- '+owner);
         })
     })
+    it('retrieve xpath values', function () {
+        cy.retrieveValue('firstNameXpath').then((firstNameXpath) => {
+            cy.log('firstNameXpath -- '+firstNameXpath);
+        })
+        cy.retrieveValue('cityXpath').then((cityXpath) => {
+            cy.log('cityXpath -- '+cityXpath);
+        })
+        cy.retrieveValue('ownerXpath').then((ownerXpath) => {
+            cy.log('ownerXpath -- '+ownerXpath);
+        })
+    });
 
     after(() => {
         //cy.clearPluginSetup();
