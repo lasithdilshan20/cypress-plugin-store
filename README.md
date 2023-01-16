@@ -3,6 +3,11 @@
 > Store values during the executions and retrieve in any test case in the same spec file.
 
 **Note: Support with both CSS  Selectors and Xpath**
+
+Please install and configure the Xpath plugin as below:
+
+https://www.npmjs.com/package/@cypress/xpath
+
 ## install
 
 ```

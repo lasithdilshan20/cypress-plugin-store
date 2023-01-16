@@ -11,7 +11,7 @@ Cypress.Commands.add('storePluginSetup', () => {
 Cypress.Commands.add('storeValue', (element,variableName) => {
   cy.log('**storeValue**')
     const filename = 'src/variables.json';
-  if (element.includes('/')) {
+  if (element.startsWith('/')) {
       //Xpath
       cy.readFile(filename, {log: false}).then((json) => {
           cy.xpath(element).invoke('text').then(($el) => {

@@ -1,7 +1,7 @@
 const storeValueCommand = (name) => (element,variableName) => {
     cy.log(`**${name}**`)
     const filename = 'src/variables.json';
-    if (element.includes('/')) {
+    if (element.startsWith('/')) {
         cy.readFile(filename, {log: false}).then((json) => {
             cy.xpath(element).invoke('text').then(($el) => {
                 json[variableName] = $el;
