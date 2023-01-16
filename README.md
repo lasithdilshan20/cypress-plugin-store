@@ -2,6 +2,7 @@
 
 > Store values during the executions and retrieve in any test case in the same spec file.
 
+**Note: Support with both CSS  Selectors and Xpath**
 ## install
 
 ```
@@ -32,10 +33,10 @@ before(() => {
 
 Then use the custom command `cy.storeValue`
 
-**Note: Only support with CSS  Selectors**
+**Note: Support with both CSS  Selectors and Xpath**
 
 ```js
-cy.storeValue(element_CSS_Selector,variable_Name)
+cy.storeValue(element_locator,variable_Name)
 ```
 Example:
 ```js
@@ -45,6 +46,7 @@ it('Store the Variables', () => {
     cy.get('#lname').type('Doe')
     cy.storeValue('#fname','firstName')
     cy.storeValue('#lname','lastName')
+    cy.storeValue(`//input[@id='city']`,'city')
 })
 ```
 
@@ -66,6 +68,12 @@ Example:
 it('retrieve Last name the elements', () => {
     cy.retrieveValue('lastName').then((lastName) => {
         cy.log('This is '+lastName);
+    })
+})
+
+it('retrieve city the xpath elements', () => {
+    cy.retrieveValue('city').then((city) => {
+        cy.log('This is '+city);
     })
 })
 ```
