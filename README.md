@@ -2,7 +2,8 @@
 
 > Store values during the executions and retrieve in any test case in the same spec file.
 
-**Note: Support with both CSS  Selectors and Xpath**
+**Note: Support with both CSS Selectors and Xpath**
+
 ## install
 
 ```
@@ -18,7 +19,7 @@ yarn add -D cypress-plugin-store
 Include from your Cypress support file or individual spec (cypress > support > e2e.js)
 
 ```js
-import 'cypress-plugin-store/commands'
+import "cypress-plugin-store/commands";
 ```
 
 Then use the custom command `cy.storePluginSetup()` to initialize the plugin.
@@ -27,55 +28,59 @@ Then use the custom command `cy.storePluginSetup()` to initialize the plugin.
 
 ```js
 before(() => {
-    cy.storePluginSetup();
-})
+  cy.storePluginSetup();
+});
 ```
 
 Then use the custom command `cy.storeValue`
 
-**Note: Support with both CSS  Selectors and Xpath**
+**Note: Support with both CSS Selectors and Xpath**
 
 ```js
-cy.storeValue(element_locator,variable_Name)
+cy.storeValue(element_locator, variable_Name);
 ```
+
 Example:
+
 ```js
-it('Store the Variables', () => {
-    cy.visit('cypress/index.html')
-    cy.get('#fname').type('John')
-    cy.get('#lname').type('Doe')
-    cy.storeValue('#fname','firstName')
-    cy.storeValue('#lname','lastName')
-    cy.storeValue(`//input[@id='city']`,'city')
-})
+it("Store the Variables", () => {
+  cy.visit("cypress/index.html");
+  cy.get("#fname").type("John");
+  cy.get("#lname").type("Doe");
+  cy.storeValue("#fname", "firstName");
+  cy.storeValue("#lname", "lastName");
+  cy.storeValue(`//input[@id='city']`, "city");
+});
 ```
 
 Then use the custom command `cy.retrieveValue`
 
 ```js
 cy.retrieveValue(variable_Name).then((var_) => {
-    // Do something with the var_
-})
+  // Do something with the var_
+});
 ```
+
 Example:
+
 ```js
- it('retrieve First name the elements', () => {
-    cy.retrieveValue('firstName').then((firstName) => {
-        cy.log('This is First Name'+firstName);
-    })
-})
+it("retrieve First name the elements", () => {
+  cy.retrieveValue("firstName").then((firstName) => {
+    cy.log("This is First Name" + firstName);
+  });
+});
 
-it('retrieve Last name the elements', () => {
-    cy.retrieveValue('lastName').then((lastName) => {
-        cy.log('This is '+lastName);
-    })
-})
+it("retrieve Last name the elements", () => {
+  cy.retrieveValue("lastName").then((lastName) => {
+    cy.log("This is " + lastName);
+  });
+});
 
-it('retrieve city the xpath elements', () => {
-    cy.retrieveValue('city').then((city) => {
-        cy.log('This is '+city);
-    })
-})
+it("retrieve city the xpath elements", () => {
+  cy.retrieveValue("city").then((city) => {
+    cy.log("This is " + city);
+  });
+});
 ```
 
 Finally, use the custom command `cy.clearPluginSetup()` to clear the plugin. **(IF needed)**
@@ -84,8 +89,8 @@ Finally, use the custom command `cy.clearPluginSetup()` to clear the plugin. **(
 
 ```js
 after(() => {
-    cy.clearPluginSetup();
-})
+  cy.clearPluginSetup();
+});
 ```
 
 [ci image]: https://github.com/lasithdilshan20/cypress-plugin-store/workflows/ci/badge.svg?branch=main
