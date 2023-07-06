@@ -8,39 +8,31 @@ Cypress.Commands.add('storePluginSetup', () => {
     //Write the file with all access
     cy.writeFile(filename, {}, {flag: 'w+', log: false});
 })
-Cypress.Commands.add('storeValue', (element,variableName) => {
-  cy.log('**storeValue**')
-    const filename = 'src/variables.json';
-  if (element.startsWith('/')) {
-      //Xpath
-      cy.readFile(filename, {log: false}).then((json) => {
-          cy.xpath(element).invoke('text').then(($el) => {
-              json[variableName] = $el;
-              if ($el === '') {
-                  delete json[variableName];
-                  cy.xpath(element).invoke('val').then(($el) => {
-                      json[variableName] = $el;
-                  })
-              }
-              cy.writeFile(filename, json, {log: false});
-          })
-      })
-  } else {
-      //CSS Selector
-      cy.readFile(filename, {log: false}).then((json) => {
-          cy.get(element).invoke('text').then(($el) => {
-              json[variableName] = $el;
-              if ($el === '') {
-                  delete json[variableName];
-                  cy.get(element).invoke('val').then(($el) => {
-                      json[variableName] = $el;
-                  })
-              }
-              cy.writeFile(filename, json, {log: false});
-          })
-      })
-  }
-})
+const filename = 'src/variables.json';
+
+Cypress.Commands.add('storeValue', { prevSubject: false }, (element, variableName) => {
+    cy.log('**storeValue**');
+
+    if (element.startsWith('/')) {
+        // Xpath
+        cy.xpath(element).then(($el) => {
+            const value = $el.text() || $el.val();
+            cy.readFile(filename,{log: false}).then((json) => {
+                json[variableName] = value;
+                cy.writeFile(filename, json,{log: false});
+            });
+        });
+    } else {
+        // CSS Selector
+        cy.get(element).then(($el) => {
+            const value = $el.text() || $el.val();
+            cy.readFile(filename,{log: false}).then((json) => {
+                json[variableName] = value;
+                cy.writeFile(filename, json,{log: false});
+            });
+        });
+    }
+});
 
 Cypress.Commands.add('retrieveValue', (variableName) => {
     cy.log('**retrieveValue**')
