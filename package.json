@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@cypress/xpath": "^2.0.3",
-    "cypress": "^12.17.3",
+    "cypress": "https://cdn.cypress.io/beta/npm/13.0.0/linux-x64/release/13.0.0-5d1e07a7aa228745b5e742aa3e912fcbd4cb217f/cypress.tgz",
     "semantic-release": "20.0.2"
   }
 }
