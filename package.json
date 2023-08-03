@@ -20,7 +20,7 @@
   },
   "scripts": {
     "test": "cypress run",
-    "start": "npx cypress run --record --key 026ce059-c468-4451-9a3f-eaf42ce89a32",
+    "start": "npx cypress run --record --key d10c76c3-5386-46dc-8fde-b3fee0e681eb",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "semantic-release": "semantic-release",
@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@cypress/xpath": "^2.0.3",
-    "cypress": "12.16.0",
+    "cypress": "^12.17.3",
     "semantic-release": "20.0.2"
   }
 }
